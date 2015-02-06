@@ -1,0 +1,25 @@
+{% extends 'rango/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Login{% endblock %}
+
+{% block body_block %}
+
+		<h2>Login to Rango</h2>
+
+		<form id='login' method='post' action="{% url 'login' %}">
+				{% csrf_token %}
+				{% if disabled %}
+				<p><strong>Your account is currently disabled; we can't log you in!</strong></p>
+				{% elif bad_details %}
+				<p><strong>Your username and/or password is incorrect!<br /> Try Again!</strong></p>
+				{% endif %}
+				Username: <input type='text' name='username' value='' size=50 /> <br />
+				Password: <input type='password' name='password' value='' size=50 /> <br />
+
+				<input type='submit' name='submit' value='login' />
+		</form>
+
+{% endblock %}
+				
